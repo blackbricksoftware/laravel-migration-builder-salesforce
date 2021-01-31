@@ -29,7 +29,7 @@ SF_USERNAME=test@example.com
 SF_PASSWORD=password123
 ```
 
-`SF_AUTH_METHOD=UserPassword` will likely be the easier method for a CLI application. 
+`SF_AUTH_METHOD=UserPassword` will likely be the easiest method for a CLI application. 
 
 `SF_LOGIN_URL` will generally be `https://login.salesforce.com` for a live org or `https://test.salesforce.com` for a sandbox org.
 
