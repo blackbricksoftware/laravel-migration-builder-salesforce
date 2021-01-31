@@ -5,7 +5,9 @@
     "require": {
         "php": "^7.4|^8.0",
         "omniphx/forrest": "^2.11",
-        "blackbricksoftware/laravel-migration-builder": "^0.1.2"
+        "blackbricksoftware/laravel-migration-builder": "^0.1",
+        "illuminate/support": "^8.25",
+        "illuminate/console": "^8.25"
     },
     "authors": [
         {
