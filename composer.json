@@ -1,0 +1,31 @@
+{
+    "name": "blackbricksoftware/laravel-salesforce-sync",
+    "description": "Sync object structure from Salesforce Org to a local database.",
+    "type": "library",
+    "require": {
+        "php": "^7.4|^8.0",
+        "omniphx/forrest": "^2.11",
+        "blackbricksoftware/laravel-migration-builder": "^0.1.2"
+    },
+    "authors": [
+        {
+            "name": "David Hayes",
+            "email": "david@blackbrick.software"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "BlackBrickSoftware\\LaravelSalesforceSync\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BlackBrickSoftware\\LaravelSalesforceSync\\LaravelSalesforceSyncServiceProvider"
+            ]
+        }
+    },
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
