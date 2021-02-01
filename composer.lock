@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a35d6f453b66b367abcb31ec7aa89cea",
+    "content-hash": "cebd8d0bef72c07f9cd8605172e0c373",
     "packages": [
         {
             "name": "blackbricksoftware/laravel-migration-builder",

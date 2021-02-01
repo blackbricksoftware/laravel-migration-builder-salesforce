@@ -24,6 +24,10 @@ class SObjectMigration extends Migration
 
       $translateMethod = $this->findSObjectFieldToColumnTranslation($field);
       $column = $this->$translateMethod($field);
+
+      if ($field->unique)
+        $column->setUnique(true);
+
       $this->table->addColumn($column);
     }
 
@@ -60,17 +64,22 @@ class SObjectMigration extends Migration
 
     return new Column($field->name, 'string', [
       'length' => $length,
+      'nullable' => true,
     ]);
   }
 
   public function translateBoolean(Field $field): Column
   {
-    return new Column($field->name, 'boolean');
+    return new Column($field->name, 'boolean', [
+      'nullable' => true,
+    ]);
   }
 
   public function translateInt(Field $field): Column
   {
-    return new Column($field->name, $field->digits < 10 ? 'integer' : 'bigInteger');
+    return new Column($field->name, $field->digits < 10 ? 'integer' : 'bigInteger', [
+      'nullable' => true,
+    ]);
   }
 
   public function translateDouble(Field $field): Column
@@ -78,22 +87,30 @@ class SObjectMigration extends Migration
     return new Column($field->name, 'double', [
       'length' => $field->precision,
       'fractional' => $field->scale,
+      'nullable' => true,
     ]);
   }
 
   public function translateDate(Field $field): Column
   {
-    return new Column($field->name, 'date');
+    return new Column($field->name, 'date', [
+      'nullable' => true,
+    ]);
   }
 
   public function translateDatetime(Field $field): Column
   {
-    return new Column($field->name, 'dateTime');
+    return new Column($field->name, 'dateTime', [
+      'nullable' => true,
+    ]);
   }
 
   public function translateBase64(Field $field): Column
   {
-    return new Column($field->name, 'longText'); // probably could be smarter here, but I do not have an example
+    // probably could be smarter here, but I do not have an example
+    return new Column($field->name, 'longText', [
+      'nullable' => true,
+    ]);
   }
 
   public function translateId(Field $field): Column
@@ -109,6 +126,7 @@ class SObjectMigration extends Migration
     return new Column($field->name, 'string', [
       'length' => 18,
       'index' => true,
+      'nullable' => true,
     ]);
   }
 
@@ -120,7 +138,9 @@ class SObjectMigration extends Migration
   public function translateTextarea(Field $field): Column
   {
     // Using mySQL numbers;
-    return new Column($field->name, $field->byteLength<=65535 ? 'text': ($field->byteLength<=16777215 ? 'mediumText' : 'longText'));
+    return new Column($field->name, $field->byteLength<=65535 ? 'text': ($field->byteLength<=16777215 ? 'mediumText' : 'longText'), [
+      'nullable' => true,
+    ]);
   }
 
   public function translatePercent(Field $field): Column
