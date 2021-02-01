@@ -37,7 +37,12 @@ SF_PASSWORD=password123
 
 ## Usage
 
-`php artisan make:migration-builder:salesforce-object ObjectName`
+Run `php artisan make:migration-builder:salesforce:object ObjectName` to create a migration based on the description of `ObjectName` from the Salesforce REST API.
+
+## Debugging
+
+Run `php artisan make:migration-builder:salesforce:object:debug ObjectName` to create a 3 files in the (a `ObjectName.var_dump.txt`, `Objectname.print_r.txt`, and pretty printed `ObjectName.json`) in the `Storage::disk('local')` directory (usually `storage/app/migration-builder/salesforce/`) showing the response from the Salesforce REST API.
 
 # Acknowledgement
 
+- [This](https://developer.salesforce.com/docs/atlas.en-us.230.0.api.meta/api/sforce_api_calls_describesobjects_describesobjectresult.htm) Salesforce Developer document I guess.
