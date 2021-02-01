@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BlackBrickSoftware\LaravelSalesforceSync\Commands;
 
 use Forrest;
 use Illuminate\Console\Command;
 use Illuminate\Support\Composer;
-use SalesforceException;
 use Storage;
 
 class SObjectDebugCommand extends Command

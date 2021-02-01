@@ -1,8 +1,14 @@
 <?php
 
+// https://developer.salesforce.com/docs/atlas.en-us.230.0.api.meta/api/sforce_api_calls_describesobjects_describesobjectresult.htm
+
+declare(strict_types=1);
+
 namespace BlackBrickSoftware\LaravelSalesforceSync;
 
-class SObject extends Base
+use BlackBrickSoftware\LaravelSalesforceSync\SObjectBase;
+
+class SObject extends SObjectBase
 {
 
   /**

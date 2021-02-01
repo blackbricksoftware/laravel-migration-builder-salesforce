@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BlackBrickSoftware\LaravelSalesforceSync;
 
 use Illuminate\Support\ServiceProvider;
@@ -9,10 +11,8 @@ class LaravelSalesforceSyncServiceProvider extends ServiceProvider
   
   /**
    * Publishes configuration file.
-   *
-   * @return  void
    */
-  public function boot()
+  public function boot(): void
   {
     $this->publishes([
       __DIR__ . '/../config/salesforce_sync.php' => config_path('salesforce_sync.php'),
@@ -21,10 +21,8 @@ class LaravelSalesforceSyncServiceProvider extends ServiceProvider
 
   /**
    * Make config publishment optional by merging the config from the package.
-   *
-   * @return  void
    */
-  public function register()
+  public function register(): void
   {
     // config
     $this->mergeConfigFrom(

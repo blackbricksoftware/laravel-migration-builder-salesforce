@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BlackBrickSoftware\LaravelSalesforceSync;
 
-// use Illuminate\Support\Str;
-use BadMethodCallException;
+// use BadMethodCallException;
+use LogicException;
 
 class Base
 {
@@ -11,22 +13,18 @@ class Base
   /**
    * Magic getter for properties
    * 
-   * @param string $property
    * @return mixed
    */
   public function __get(string $name)
   {
     if (!property_exists($this, $name))
-      throw new BadMethodCallException("Unknown property: {$name}");
+      throw new LogicException("Unknown property: {$name}");
 
     return $this->$name;
   }
 
   /**
    * Magic isset check
-   * 
-   * @param string $property
-   * @return mixed
    */
   public function __isset(string $name): bool
   {
