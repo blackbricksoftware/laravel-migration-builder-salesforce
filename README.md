@@ -52,4 +52,5 @@ Change `storage.type` to `object` if you intend to use more than one Salesforce 
 
 # Acknowledgement
 
+- omniphx for the [Salesforce REST API Client for Laravel](https://github.com/omniphx/forrest)
 - [This](https://developer.salesforce.com/docs/atlas.en-us.230.0.api.meta/api/sforce_api_calls_describesobjects_describesobjectresult.htm) Salesforce Developer document I guess.
