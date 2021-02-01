@@ -21,12 +21,13 @@ class SObjectMigrationCommand extends BaseCommand
    * @var string
    */
   protected $signature = 'make:migration-builder:salesforce:object
-    {objectName : Name of Salesforce object}
-    {--create= : The table to be created}
-    {--table= : The table to migrate}
-    {--path= : The location where the migration file should be created}
-    {--realpath : Indicate any provided migration file paths are pre-resolved absolute paths}
-    {--fullpath : Output the full path of the migration}';
+    {objectName : Name of Salesforce object}'
+    // {--create= : The table to be created}
+    // {--table= : The table to migrate}
+    .'{--path= : The location where the migration file should be created}'
+    // {--realpath : Indicate any provided migration file paths are pre-resolved absolute paths}
+    // {--fullpath : Output the full path of the migration}
+  ;
 
   /**
    * The console command description.
