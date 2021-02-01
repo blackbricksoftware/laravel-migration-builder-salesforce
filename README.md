@@ -4,6 +4,8 @@
 
 Create migration as analogs to Salesforce objects read from a connected org. Useful for staging data for import or downloading data for warehousing.
 
+See [Laravel Migration Builder](https://github.com/blackbricksoftware/laravel-migration-builder) as well.
+
 ## Installation
 
 ### Install package
