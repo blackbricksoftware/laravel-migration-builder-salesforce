@@ -23,10 +23,8 @@ class SObjectMigration extends Migration
     foreach ($sobject->fields as $field) {
 
       $translateMethod = $this->findSObjectFieldToColumnTranslation($field);
-      if ($translateMethod) {
-        $column = $this->$translateMethod($field);
-        $this->table->addColumn($column);
-      }
+      $column = $this->$translateMethod($field);
+      $this->table->addColumn($column);
     }
 
     if ($includeForeignKeys)
@@ -48,8 +46,7 @@ class SObjectMigration extends Migration
     if (method_exists($this, $translateMethod))
       return $translateMethod;
 
-    return '';
-    // throw new RuntimeException("Unknown type {$field->type} for Field {$field->name}");
+    throw new RuntimeException("Unknown type {$field->type} for Field {$field->name}");
   }
 
   public function translateString(Field $field): Column
@@ -62,7 +59,7 @@ class SObjectMigration extends Migration
       return $this->translateTextarea($field);
 
     return new Column($field->name, 'string', [
-      'length' => ,
+      'length' => $length,
     ]);
   }
 
@@ -89,9 +86,9 @@ class SObjectMigration extends Migration
     return new Column($field->name, 'date');
   }
 
-  public function translateDateTime(Field $field): Column
+  public function translateDatetime(Field $field): Column
   {
-    return new Column($field->name, 'datetime');
+    return new Column($field->name, 'dateTime');
   }
 
   public function translateBase64(Field $field): Column
@@ -136,6 +133,11 @@ class SObjectMigration extends Migration
     return $this->translateString($field);
   }
 
+  public function translateUrl(Field $field): Column
+  {
+    return $this->translateString($field);
+  }
+
   public function translateEmail(Field $field): Column
   {
     return $this->translateString($field);
@@ -171,4 +173,5 @@ class SObjectMigration extends Migration
   {
     return $this->translateTextarea($field);
   }
+
 }
