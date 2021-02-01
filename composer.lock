@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "blackbricksoftware/laravel-migration-builder",
-            "version": "v0.2.0",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blackbricksoftware/laravel-migration-builder.git",
-                "reference": "b2cce6d57f20997c6608f212105ceb7b23df1af1"
+                "reference": "852d6621dcf8c59e53658f19ac247db9e7dac5df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blackbricksoftware/laravel-migration-builder/zipball/b2cce6d57f20997c6608f212105ceb7b23df1af1",
-                "reference": "b2cce6d57f20997c6608f212105ceb7b23df1af1",
+                "url": "https://api.github.com/repos/blackbricksoftware/laravel-migration-builder/zipball/852d6621dcf8c59e53658f19ac247db9e7dac5df",
+                "reference": "852d6621dcf8c59e53658f19ac247db9e7dac5df",
                 "shasum": ""
             },
             "require": {
@@ -52,9 +52,9 @@
             "description": "Programatically create full laravel migrations.",
             "support": {
                 "issues": "https://github.com/blackbricksoftware/laravel-migration-builder/issues",
-                "source": "https://github.com/blackbricksoftware/laravel-migration-builder/tree/v0.2.0"
+                "source": "https://github.com/blackbricksoftware/laravel-migration-builder/tree/v0.2.1"
             },
-            "time": "2021-02-01T11:08:51+00:00"
+            "time": "2021-02-01T12:01:47+00:00"
         },
         {
             "name": "doctrine/inflector",
