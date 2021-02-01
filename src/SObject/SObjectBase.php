@@ -29,28 +29,30 @@ class SObjectBase extends Base
    */
   public function __construct(?array $rawApiResponse = null)
   {
-    
+
     // $this->reflection = new ReflectionClass($this);
-    
-    if ($rawApiResponse!==null)
+
+    if ($rawApiResponse !== null)
       $this->bind($rawApiResponse);
   }
 
   /**
    * Bind the api respose array into the object
-   * 
-   * @throws RuntimeException
    */
   public function bind(array $rawApiResponse): SObjectBase
   {
 
-    if (count($rawApiResponse)===0)
+    if (count($rawApiResponse) === 0)
       return $this;
 
     foreach ($rawApiResponse as $property => $value) {
 
       $setter = $this->findSetter($property);
-      $this->$setter($value);
+      if ($setter !== null) {
+        $this->$setter($value);
+      } else {
+        $this->setGenericProperty($property, $value);
+      }
     }
 
     return $this;
@@ -58,27 +60,27 @@ class SObjectBase extends Base
 
   /**
    * Return a method to set a property to this object
-   * 
-   * @throws RuntimeException
    */
-  public function findSetter(string $property): string
+  public function findSetter(string $property): ?string
   {
-    
+
     $setterMethod = 'set' . Str::studly($property);
 
     if (method_exists($this, $setterMethod))
       return $setterMethod;
 
-    return 'setGenericProperty';
+    return null;
   }
 
   /**
    * Set a property of this object, checking existanse and type
+   * 
+   * @throws RuntimeException
    */
   public function setGenericProperty($property, $value): SObjectBase
   {
 
-    if (property_exists($this, $property))
+    if (!property_exists($this, $property))
       throw new RuntimeException("Property {$property} does not exist");
 
     // $property = $this->reflection->getProperty($property);
@@ -86,7 +88,8 @@ class SObjectBase extends Base
     // if ($type===null)
     //   return $this;
 
+    $this->$property = $value;
+
     return $this;
   }
-
 }

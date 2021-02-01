@@ -11,6 +11,7 @@ use BlackBrickSoftware\LaravelMigrationBuilder\Table;
 use Illuminate\Console\Command;
 use Forrest;
 use BlackBrickSoftware\LaravelSalesforceSync\ObjectMigration;
+use BlackBrickSoftware\LaravelSalesforceSync\SObject;
 use Illuminate\Database\Console\Migrations\BaseCommand;
 use Illuminate\Support\Composer;
 // use Omniphx\Forrest\Exceptions\SalesforceException;
@@ -74,17 +75,9 @@ class SObjectMigrationCommand extends BaseCommand
     // https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_sobject_basic_info.htm
     $objectDescription = Forrest::sobjects("$objectName/describe");
 
-    $localStorage = Storage::disk('local');
+    $object = new SObject($objectDescription);
 
-    ob_start();
-    var_dump($objectDescription); 
-    $objDump = ob_get_clean();
-
-    $localStorage->put("$objectName.var_dump.txt", $objDump);
-    $localStorage->put("$objectName.print_r.txt", print_r($objectDescription, true));
-    $localStorage->put("$objectName.json", json_encode($objectDescription, JSON_PRETTY_PRINT));
-
-    $this->info('Wrote ' . implode(', ', $files) . ' to local storage');
+    print_r($object);
 
     // $objectMigration = new ObjectMigration($objectName, $objectDescription);
     // $objectMigration->create();

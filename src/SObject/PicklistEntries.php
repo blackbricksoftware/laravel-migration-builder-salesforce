@@ -7,7 +7,7 @@ namespace BlackBrickSoftware\LaravelSalesforceSync\SObject;
 use ArrayObject;
 use InvalidArgumentException;
 
-class NamedLayoutInfos extends ArrayObject
+class PicklistEntries extends ArrayObject
 {
   
   public function __construct(array $input = [], int $flags = 0, string $iterator_class = "ArrayIterator")
@@ -19,12 +19,12 @@ class NamedLayoutInfos extends ArrayObject
     $newInput = [];
     foreach ($input as $val) {
 
-      if ($val instanceof NamedLayoutInfo) {
+      if ($val instanceof PicklistEntry) {
         $newInput[] = $val;
       } elseif (gettype($val) === 'array') {
-        $newInput[] = new NamedLayoutInfo($val);
+        $newInput[] = new PicklistEntry($val);
       } else {
-        throw new InvalidArgumentException('Must be a NamedLayoutInfo type');
+        throw new InvalidArgumentException('Must be a PicklistEntry type');
       }
     }
 
@@ -33,10 +33,10 @@ class NamedLayoutInfos extends ArrayObject
 
   public function offsetSet($key, $val): void
   {
-    if ($val instanceof NamedLayoutInfo) {
+    if ($val instanceof PicklistEntry) {
       parent::offsetSet($key, $val);
       return;
     }
-    throw new InvalidArgumentException('Must be a NamedLayoutInfo type');
+    throw new InvalidArgumentException('Must be a PicklistEntry type');
   }
 }

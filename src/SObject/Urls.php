@@ -22,6 +22,8 @@ class Urls extends SObjectBase
 
   protected string $defaultValues;
 
+  protected string $layout;
+
   protected string $listviews;
 
   protected string $describe;

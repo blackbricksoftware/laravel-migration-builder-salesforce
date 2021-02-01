@@ -7,14 +7,14 @@ namespace BlackBrickSoftware\LaravelSalesforceSync\SObject;
 use InvalidArgumentException;
 
 /**
- * See: https://developer.salesforce.com/docs/atlas.en-us.230.0.api.meta/api/sforce_api_calls_describesobjects_describesobjectresult.htm#actionOverride
+ * See: https://developer.salesforce.com/docs/atlas.en-us.230.0.api.meta/api/sforce_api_calls_describesobjects_describesobjectresult.htm#actionOverrideTopic
  */
 class ActionOverride extends SObjectBase
 {
 
   protected string $formFactor;
 
-  const SUPPORTED_FORM_FACTORS = [
+  public const FORM_FACTORS = [
     'SMALL',
     'LARGE',
   ];
@@ -29,8 +29,9 @@ class ActionOverride extends SObjectBase
 
   public function setFormFactor(string $formFactor): ActionOverride
   {
-    if (!in_array($formFactor, static::SUPPORTED_FORM_FACTORS))
-      throw new InvalidArgumentException('Form factor is not allowed');
+
+    if (!in_array($formFactor, static::FORM_FACTORS))
+      throw new InvalidArgumentException("Form factor {$formFactor} is not allowed");
 
     $this->formFactor = $formFactor;
 
