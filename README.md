@@ -37,13 +37,18 @@ SF_PASSWORD=password123
 
 `SF_PASSWORD` will be the user's login password with the user's token concatenated on the end.
 
+
+# Modify configuration (optional)
+
+Change `storage.type` to `object` if you intend to use more than one Salesforce connection.
+
 ## Usage
 
-Run `php artisan make:migration-builder:salesforce:object ObjectName` to create a migration based on the description of `ObjectName` from the Salesforce REST API.
+### Commands
 
-## Debugging
-
-Run `php artisan make:migration-builder:salesforce:object:debug ObjectName` to create a 3 files in the (a `ObjectName.var_dump.txt`, `Objectname.print_r.txt`, and pretty printed `ObjectName.json`) in the `Storage::disk('local')` directory (usually `storage/app/migration-builder/salesforce/`) showing the response from the Salesforce REST API.
+- `php artisan make:migration-builder:salesforce:object ObjectName`: make a migration mirroring the structure of the given object (`ObjectName`)
+- `php artisan make:migration-builder:salesforce:object:list`: list available object in connected Salesforce Org
+- `php artisan make:migration-builder:salesforce:object:debug ObjectName`: create a 3 files in the (a `ObjectName.var_dump.txt`, `Objectname.print_r.txt`, and pretty printed `ObjectName.json`) in the `Storage::disk('local')` directory (usually `storage/app/migration-builder/salesforce/`) showing the response from the Salesforce REST API.
 
 # Acknowledgement
 

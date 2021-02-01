@@ -65,7 +65,7 @@ class SObject extends SObjectBase
 
   protected bool $isSubtype;
 
-  protected string $keyPrefix;
+  protected ?string $keyPrefix;
 
   protected string $label;
 

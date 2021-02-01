@@ -36,4 +36,17 @@ class Urls extends SObjectBase
 
   protected string $sobject;
 
+  protected string $eventSchema;
+
+  protected string $caseArticleSuggestions;
+
+  protected string $caseRowArticleSuggestions;
+
+  protected string $eventSeriesUpdates;
+
+  protected string $push;
+
+  protected string $namedLayouts;
+
+  protected string $passwordUtilities;
 }
