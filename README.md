@@ -1,4 +1,4 @@
-# Laravel Salesforce Sync
+# Laravel Migration Builder - Salesforce
 
 ## Description
 
@@ -8,11 +8,11 @@ Create migration as analogs to Salesforce objects read from a connected org. Use
 
 ### Install package
 
-`composer require blackbricksoftware/laravel-salesforce-sync --dev`
+`composer require blackbricksoftware/laravel-migration-builder-salesforce --dev`
 
 ### Publish configuration
 
-`php artisan vendor:publish --tag=laravel-salesforce-sync-config`
+`php artisan vendor:publish --tag=laravel-migration-builder-salesforce-config`
 
 ## Modify .env
 

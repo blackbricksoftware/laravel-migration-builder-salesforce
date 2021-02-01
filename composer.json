@@ -1,6 +1,6 @@
 {
-    "name": "blackbricksoftware/laravel-salesforce-sync",
-    "description": "Sync object structure from Salesforce Org to a local database.",
+    "name": "blackbricksoftware/laravel-migration-builder-salesforce",
+    "description": "Create migration of object structure from Salesforce Org to a local database.",
     "type": "library",
     "require": {
         "php": "^7.4|^8.0",

@@ -15,8 +15,8 @@ class MigrationBuilderSalesforceServiceProvider extends ServiceProvider
   public function boot(): void
   {
     $this->publishes([
-      __DIR__ . '/../config/salesforce_sync.php' => config_path('salesforce_sync.php'),
-    ], 'laravel-salesforce-sync-config');
+      __DIR__ . '/../config/migration_builder_salesforce.php' => config_path('migration_builder_salesforce.php'),
+    ], 'laravel-migration-builder-salesforce-config');
   }
 
   /**
@@ -26,8 +26,8 @@ class MigrationBuilderSalesforceServiceProvider extends ServiceProvider
   {
     // config
     $this->mergeConfigFrom(
-      __DIR__ . '/../config/salesforce_sync.php',
-      'salesforce_sync'
+      __DIR__ . '/../config/migration_builder_salesforce.php',
+      'migration_builder_salesforce'
     );
     // commands
     $this->commands([
