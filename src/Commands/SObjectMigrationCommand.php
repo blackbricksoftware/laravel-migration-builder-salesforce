@@ -2,20 +2,16 @@
 
 declare(strict_types=1);
 
-namespace BlackBrickSoftware\LaravelSalesforceSync\Commands;
+namespace BlackBrickSoftware\MigrationBuilderSalesforce\Commands;
 
-use BlackBrickSoftware\LaravelMigrationBuilder\Column;
-use BlackBrickSoftware\LaravelMigrationBuilder\Migration;
-use BlackBrickSoftware\LaravelMigrationBuilder\MigrationCreator;
-use BlackBrickSoftware\LaravelMigrationBuilder\Table;
-use Illuminate\Console\Command;
+use BlackBrickSoftware\MigrationBuilder\Column;
+use BlackBrickSoftware\MigrationBuilder\MigrationCreator;
+use BlackBrickSoftware\MigrationBuilder\Table;
+use BlackBrickSoftware\MigrationBuilderSalesforce\SObject;
+use BlackBrickSoftware\MigrationBuilderSalesforce\SObjectMigration;
 use Forrest;
-use BlackBrickSoftware\LaravelSalesforceSync\ObjectMigration;
-use BlackBrickSoftware\LaravelSalesforceSync\SObject;
 use Illuminate\Database\Console\Migrations\BaseCommand;
 use Illuminate\Support\Composer;
-// use Omniphx\Forrest\Exceptions\SalesforceException;
-// use GuzzleHttp\Exception\ClientException;
 
 class SObjectMigrationCommand extends BaseCommand
 {
@@ -71,39 +67,35 @@ class SObjectMigrationCommand extends BaseCommand
     $this->info('Authenticated!');
 
     $objectName = $this->argument('objectName');
-    
+
     // https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_sobject_basic_info.htm
     $objectDescription = Forrest::sobjects("$objectName/describe");
 
-    $object = new SObject($objectDescription);
+    $sobject = new SObject($objectDescription);
 
-    print_r($object);
+    $app = app();
 
-    // $objectMigration = new ObjectMigration($objectName, $objectDescription);
-    // $objectMigration->create();
+    // see: Illuminate\Database\MigrationServiceProvider (we are using our own variant)
+    $migrationCreator = new MigrationCreator($app['files'], $app->basePath('stubs'));
 
-    // $app = app();
+    // see: Illuminate\Database\Console\Migrations\MigrateMakeCommand
+    $path = $this->getMigrationPath();
 
-    // // see: Illuminate\Database\MigrationServiceProvider (we are using our own variant)
-    // $migrationCreator = new MigrationCreator($app['files'], $app->basePath('stubs'));
+    $table = new Table($objectName, [
+      'timestamps' => true,
+    ]);
+    $table->addColumn(new Column('local_id', 'integer', [
+      'autoIncrement' => true,
+    ]));
 
-    // // see: Illuminate\Database\Console\Migrations\MigrateMakeCommand
-    // $path = $this->getMigrationPath();
+    $migration = new SObjectMigration("create_{$objectName}_table", $path, $table, $migrationCreator);
+    $migration->addSObject($sobject);
 
-    // $table = new Table('Account', [
-    //   'timestamps' => false,
-    // ]);
-    // $column = new Column('id', 'integer', [
-    //   'autoIncrement' => true,
-    // ]);
-    // $table->addColumn($column);
+    $file = $migration->writeMigration(true);
 
-    // $migration = new Migration("create_{$objectName}_table", $path, $table, $migrationCreator);
-    // $file = $migration->writeMigration(true);
+    $this->composer->dumpAutoloads();
 
-    // $this->composer->dumpAutoloads();
-
-    // $this->info("Created Migration: $file");
+    $this->info("Created Migration: $file");
 
     return 0;
   }

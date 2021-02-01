@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05c4fe5b42a9ebf0f24a4e326ebbefab",
+    "content-hash": "a35d6f453b66b367abcb31ec7aa89cea",
     "packages": [
         {
             "name": "blackbricksoftware/laravel-migration-builder",
-            "version": "v0.1.4",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blackbricksoftware/laravel-migration-builder.git",
-                "reference": "db81525787681ddeb0ffdd5bfb895e5bb446b500"
+                "reference": "b2cce6d57f20997c6608f212105ceb7b23df1af1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blackbricksoftware/laravel-migration-builder/zipball/db81525787681ddeb0ffdd5bfb895e5bb446b500",
-                "reference": "db81525787681ddeb0ffdd5bfb895e5bb446b500",
+                "url": "https://api.github.com/repos/blackbricksoftware/laravel-migration-builder/zipball/b2cce6d57f20997c6608f212105ceb7b23df1af1",
+                "reference": "b2cce6d57f20997c6608f212105ceb7b23df1af1",
                 "shasum": ""
             },
             "require": {
@@ -30,13 +30,13 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "BlackBrickSoftware\\LaravelMigrationBuilder\\LaravelMigrationBuilderServiceProvider"
+                        "BlackBrickSoftware\\MigrationBuilder\\MigrationBuilderServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "BlackBrickSoftware\\LaravelMigrationBuilder\\": "src/"
+                    "BlackBrickSoftware\\MigrationBuilder\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -52,9 +52,9 @@
             "description": "Programatically create full laravel migrations.",
             "support": {
                 "issues": "https://github.com/blackbricksoftware/laravel-migration-builder/issues",
-                "source": "https://github.com/blackbricksoftware/laravel-migration-builder/tree/v0.1.4"
+                "source": "https://github.com/blackbricksoftware/laravel-migration-builder/tree/v0.2.0"
             },
-            "time": "2021-01-31T08:29:32+00:00"
+            "time": "2021-02-01T11:08:51+00:00"
         },
         {
             "name": "doctrine/inflector",

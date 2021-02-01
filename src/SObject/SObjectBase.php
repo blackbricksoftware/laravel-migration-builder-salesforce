@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace BlackBrickSoftware\LaravelSalesforceSync\SObject;
+namespace BlackBrickSoftware\MigrationBuilderSalesforce\SObject;
 
-use BlackBrickSoftware\LaravelSalesforceSync\Base;
+use BlackBrickSoftware\MigrationBuilderSalesforce\Base;
 use Illuminate\Support\Str;
 // use ReflectionClass;
 // use ReflectionProperty;
 // use ReflectionNamedType;
 use RuntimeException;
 
-class SObjectBase extends Base
+abstract class SObjectBase extends Base
 {
 
   /**

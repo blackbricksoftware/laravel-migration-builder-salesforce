@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace BlackBrickSoftware\LaravelSalesforceSync;
+namespace BlackBrickSoftware\MigrationBuilderSalesforce;
 
 // use BadMethodCallException;
 use LogicException;
 
-class Base
+abstract class Base
 {
 
   /**
@@ -28,7 +28,7 @@ class Base
    */
   public function __isset(string $name): bool
   {
-    return property_exists($this, $name);
+    return property_exists($this, $name) && isset($this->$name);
   }
 
   // /**

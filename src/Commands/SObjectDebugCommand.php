@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BlackBrickSoftware\LaravelSalesforceSync\Commands;
+namespace BlackBrickSoftware\MigrationBuilderSalesforce\Commands;
 
 use Forrest;
 use Illuminate\Console\Command;

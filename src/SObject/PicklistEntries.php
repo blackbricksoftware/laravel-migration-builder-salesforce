@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BlackBrickSoftware\LaravelSalesforceSync\SObject;
+namespace BlackBrickSoftware\MigrationBuilderSalesforce\SObject;
 
 use ArrayObject;
 use InvalidArgumentException;

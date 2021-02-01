@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace BlackBrickSoftware\LaravelSalesforceSync;
+namespace BlackBrickSoftware\MigrationBuilderSalesforce;
 
-use BlackBrickSoftware\LaravelSalesforceSync\SObject\ActionOverrides;
-use BlackBrickSoftware\LaravelSalesforceSync\SObject\ChildRelationships;
-use BlackBrickSoftware\LaravelSalesforceSync\SObject\Fields;
-use BlackBrickSoftware\LaravelSalesforceSync\SObject\NamedLayoutInfos;
-use BlackBrickSoftware\LaravelSalesforceSync\SObject\RecordTypeInfos;
-use BlackBrickSoftware\LaravelSalesforceSync\SObject\ScopeInfos;
-use BlackBrickSoftware\LaravelSalesforceSync\SObject\SObjectBase;
-use BlackBrickSoftware\LaravelSalesforceSync\SObject\Urls;
+use BlackBrickSoftware\MigrationBuilderSalesforce\SObject\ActionOverrides;
+use BlackBrickSoftware\MigrationBuilderSalesforce\SObject\ChildRelationships;
+use BlackBrickSoftware\MigrationBuilderSalesforce\SObject\Fields;
+use BlackBrickSoftware\MigrationBuilderSalesforce\SObject\NamedLayoutInfos;
+use BlackBrickSoftware\MigrationBuilderSalesforce\SObject\RecordTypeInfos;
+use BlackBrickSoftware\MigrationBuilderSalesforce\SObject\ScopeInfos;
+use BlackBrickSoftware\MigrationBuilderSalesforce\SObject\SObjectBase;
+use BlackBrickSoftware\MigrationBuilderSalesforce\SObject\Urls;
 
 /**
  * See: https://developer.salesforce.com/docs/atlas.en-us.230.0.api.meta/api/sforce_api_calls_describesobjects_describesobjectresult.htm

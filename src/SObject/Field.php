@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BlackBrickSoftware\LaravelSalesforceSync\SObject;
+namespace BlackBrickSoftware\MigrationBuilderSalesforce\SObject;
 
 use InvalidArgumentException;
 
@@ -157,7 +157,7 @@ class Field extends SObjectBase
     'date', // Date values.
     'datetime', // Date and time values.
     'base64', // Base64-encoded arbitrary binary data (of type base64Binary). Used for Attachment, Document, and Scontrol objects.
-    'id', 'ID', // Primary key field for the object. For information on IDs, see ID Field Type.
+    'id', // Primary key field for the object. For information on IDs, see ID Field Type.
     'reference', // Cross-references to a different object. Analogous to a foreign key field in SQL.
     'currency', // Currency values.
     'textarea', // String that is displayed as a multiline text field.
@@ -168,7 +168,7 @@ class Field extends SObjectBase
     'combobox', // Comboboxes, which provide a set of enumerated values and allow the user to specify a value not in the list.
     'picklist', // Single-select picklists, which provide a set of enumerated values from which only one value can be selected.
     'multipicklist', // Multi-select picklists, which provide a set of enumerated values from which multiple values can be selected.
-    'anytype', 'anyType', // Values can be any of these types: string, picklist, boolean, int, double, percent, ID, date, dateTime, url, or email.
+    'anytype', // Values can be any of these types: string, picklist, boolean, int, double, percent, ID, date, dateTime, url, or email.
     'location', // Geolocation values, including latitude and longitude, for custom geolocation fields on custom objects
     'address', // not seen in docs, https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/compound_fields_address.htm
   ];
@@ -231,6 +231,9 @@ class Field extends SObjectBase
 
   public function setType(string $type): Field
   {
+
+    // these come in all sorts of capitalization
+    $type = strtolower($type);
 
     if (!in_array($type, static::TYPES))
       throw new InvalidArgumentException("Type {$type} is not allowed");

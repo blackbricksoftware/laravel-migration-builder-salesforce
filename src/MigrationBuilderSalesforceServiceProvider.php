@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace BlackBrickSoftware\LaravelSalesforceSync;
+namespace BlackBrickSoftware\MigrationBuilderSalesforce;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelSalesforceSyncServiceProvider extends ServiceProvider
+class MigrationBuilderSalesforceServiceProvider extends ServiceProvider
 {
   
   /**
