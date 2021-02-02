@@ -25,6 +25,16 @@ class SObjectListCommand extends Command
   protected $description = 'List available Salesforce objects';
 
   /**
+   * Create a new command instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    parent::__construct();
+  }
+  
+  /**
    * Execute the console command.
    *
    * @return int
@@ -44,7 +54,7 @@ class SObjectListCommand extends Command
 
     $this->line("Found {$length} objects");
 
-    if ($length===0)
+    if ($length === 0)
       $this->line('No Objects found');
 
     $headers = [
@@ -54,7 +64,7 @@ class SObjectListCommand extends Command
     ];
 
     $rows = [];
-    
+
     foreach ($sobjects as $sobject) {
       $rows[] = [
         'label' => $sobject->label,
@@ -67,5 +77,4 @@ class SObjectListCommand extends Command
 
     return 0;
   }
-
 }

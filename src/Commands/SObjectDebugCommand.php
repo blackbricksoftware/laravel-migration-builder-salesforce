@@ -6,7 +6,6 @@ namespace BlackBrickSoftware\MigrationBuilderSalesforce\Commands;
 
 use Forrest;
 use Illuminate\Console\Command;
-use Illuminate\Support\Composer;
 use Storage;
 
 class SObjectDebugCommand extends Command
@@ -31,11 +30,9 @@ class SObjectDebugCommand extends Command
    *
    * @return void
    */
-  public function __construct(Composer $composer)
+  public function __construct()
   {
     parent::__construct();
-
-    $this->composer = $composer;
   }
 
   /**
