@@ -73,7 +73,7 @@ abstract class SObjectBase extends Base
   }
 
   /**
-   * Set a property of this object, checking existanse and type
+   * Set a property of this object, checking existence and type
    * 
    * @throws RuntimeException
    */

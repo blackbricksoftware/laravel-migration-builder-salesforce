@@ -10,43 +10,17 @@ namespace BlackBrickSoftware\MigrationBuilderSalesforce\SObject;
 class Urls extends SObjectBase
 {
 
-  protected string $compactLayouts;
+  /**
+   * Set a property of this object, checking existence and type
+   * Overrode to dynamically add properties since there is not a fixed list
+   * 
+   * @throws RuntimeException
+   */
+  public function setGenericProperty($property, $value): SObjectBase
+  {
 
-  protected string $rowTemplate;
+    $this->$property = $value;
 
-  protected string $approvalLayouts;
-
-  protected string $uiDetailTemplate;
-
-  protected string $uiEditTemplate;
-
-  protected string $defaultValues;
-
-  protected string $layout;
-
-  protected string $listviews;
-
-  protected string $describe;
-
-  protected string $uiNewRecord;
-
-  protected string $quickActions;
-
-  protected string $layouts;
-
-  protected string $sobject;
-
-  protected string $eventSchema;
-
-  protected string $caseArticleSuggestions;
-
-  protected string $caseRowArticleSuggestions;
-
-  protected string $eventSeriesUpdates;
-
-  protected string $push;
-
-  protected string $namedLayouts;
-
-  protected string $passwordUtilities;
+    return $this;
+  }
 }
