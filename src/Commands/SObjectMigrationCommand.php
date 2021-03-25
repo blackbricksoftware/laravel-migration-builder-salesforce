@@ -82,7 +82,7 @@ class SObjectMigrationCommand extends BaseCommand
     // see: Illuminate\Database\Console\Migrations\MigrateMakeCommand
     $path = $this->getMigrationPath();
 
-    $table = new Table($objectName, [
+    $table = new Table("Salesforce$objectName", [
       'timestamps' => true,
     ]);
     $table->addColumn(new Column('local_id', 'integer', [
