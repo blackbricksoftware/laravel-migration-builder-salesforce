@@ -9,9 +9,9 @@ use BlackBrickSoftware\MigrationBuilder\MigrationCreator;
 use BlackBrickSoftware\MigrationBuilder\Table;
 use BlackBrickSoftware\MigrationBuilderSalesforce\SObject;
 use BlackBrickSoftware\MigrationBuilderSalesforce\SObjectMigration;
-use Forrest;
 use Illuminate\Database\Console\Migrations\BaseCommand;
 use Illuminate\Support\Composer;
+use Omniphx\Forrest\Providers\Laravel\Facades\Forrest;
 
 class SObjectMigrationCommand extends BaseCommand
 {
@@ -89,7 +89,7 @@ class SObjectMigrationCommand extends BaseCommand
       'autoIncrement' => true,
     ]));
 
-    $migration = new SObjectMigration("create_{$objectName}_table", $path, $table, $migrationCreator);
+    $migration = new SObjectMigration("create_salesforce_{$objectName}_object_table", $path, $table, $migrationCreator);
     $migration->addSObject($sobject);
 
     $file = $migration->writeMigration(true);
