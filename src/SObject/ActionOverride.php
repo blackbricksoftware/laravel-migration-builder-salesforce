@@ -12,7 +12,7 @@ use InvalidArgumentException;
 class ActionOverride extends SObjectBase
 {
 
-  protected string $formFactor;
+  protected ?string $formFactor;
 
   public const FORM_FACTORS = [
     'SMALL',
@@ -27,10 +27,10 @@ class ActionOverride extends SObjectBase
 
   protected ?string $url;
 
-  public function setFormFactor(string $formFactor): ActionOverride
+  public function setFormFactor(?string $formFactor): ActionOverride
   {
 
-    if (!in_array($formFactor, static::FORM_FACTORS))
+    if ($formFactor!==null && !in_array($formFactor, static::FORM_FACTORS))
       throw new InvalidArgumentException("Form factor {$formFactor} is not allowed");
 
     $this->formFactor = $formFactor;
