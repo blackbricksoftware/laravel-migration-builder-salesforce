@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace BlackBrickSoftware\MigrationBuilderSalesforce\Commands;
 
 use BlackBrickSoftware\MigrationBuilderSalesforce\SObjectList;
-use Forrest;
 use Illuminate\Console\Command;
+use Omniphx\Forrest\Providers\Laravel\Facades\Forrest;
 
 class SObjectListCommand extends Command
 {

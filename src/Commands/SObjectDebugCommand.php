@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace BlackBrickSoftware\MigrationBuilderSalesforce\Commands;
 
-use Forrest;
 use Illuminate\Console\Command;
 use Storage;
+use Omniphx\Forrest\Providers\Laravel\Facades\Forrest;
 
 class SObjectDebugCommand extends Command
 {
