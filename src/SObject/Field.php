@@ -143,7 +143,7 @@ class Field extends SObjectBase
     'xsd:int', // Integer values.
     'xsd:string', // Character strings.
     'urn:address', // not seen in docs, https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/compound_fields_address.htm
-    'urn:location', , // not seen in docs
+    'urn:location', // not seen in docs
   ];
 
   protected bool $sortable;
