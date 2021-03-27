@@ -117,7 +117,8 @@ class SObjectMigration extends Migration
   {
     return new Column($field->name, 'string', [
       'length' => 18,
-      'unique' => true,
+      // 'unique' => true,
+      'nullable' => true,
     ]);
   }
 
