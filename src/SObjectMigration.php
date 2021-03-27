@@ -25,8 +25,6 @@ class SObjectMigration extends Migration
       $translateMethod = $this->findSObjectFieldToColumnTranslation($field);
       $column = $this->$translateMethod($field);
 
-      $column->setNullable(true);
-
       if ($field->unique)
         $column->setUnique(true);
 
