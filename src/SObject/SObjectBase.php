@@ -77,7 +77,7 @@ abstract class SObjectBase extends Base
    * 
    * @throws RuntimeException
    */
-  public function setGenericProperty($property, $value): SObjectBase
+  public function setGenericProperty(string $property, $value): SObjectBase
   {
 
     if (!property_exists($this, $property))

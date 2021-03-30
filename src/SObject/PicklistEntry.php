@@ -14,7 +14,7 @@ class PicklistEntry extends SObjectBase
 
   protected bool $defaultValue;
 
-  protected string $label;
+  protected ?string $label;
 
   protected ?string $validFor; // TODO: I think this is a base64 encoded string. Do not have an example currently. https://salesforce.stackexchange.com/questions/201775/picklists-validfor-attribute
 
