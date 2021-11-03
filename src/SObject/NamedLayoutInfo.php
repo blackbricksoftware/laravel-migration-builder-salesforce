@@ -12,4 +12,13 @@ class NamedLayoutInfo extends SObjectBase
 
   protected string $name;
 
+  protected ?Urls $urls;
+
+  public function setUrls(array $urls) {
+
+    $this->urls = new Urls($urls);
+
+    return $this;
+  }
+
 }

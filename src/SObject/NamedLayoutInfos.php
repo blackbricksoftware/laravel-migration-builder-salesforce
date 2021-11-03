@@ -9,8 +9,6 @@ use InvalidArgumentException;
 
 class NamedLayoutInfos extends ArrayObject
 {
-
-  protected Urls $urls;
   
   public function __construct(array $input = [], int $flags = 0, string $iterator_class = "ArrayIterator")
   {
