@@ -31,8 +31,9 @@ class MigrationBuilderSalesforceServiceProvider extends ServiceProvider
     );
     // commands
     $this->commands([
-      Commands\SObjectMigrationCommand::class,
+      Commands\SObjectFieldListCommand::class,
       Commands\SObjectListCommand::class,
+      Commands\SObjectMigrationCommand::class,
       Commands\SObjectDebugCommand::class,
     ]);
   }

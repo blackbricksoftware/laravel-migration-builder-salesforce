@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BlackBrickSoftware\MigrationBuilderSalesforce\Commands;
 
+use BlackBrickSoftware\MigrationBuilderSalesforce\SObject;
 use BlackBrickSoftware\MigrationBuilderSalesforce\SObjectList;
 use Illuminate\Console\Command;
 use Omniphx\Forrest\Providers\Laravel\Facades\Forrest;
@@ -18,6 +19,7 @@ class SObjectFieldListCommand extends Command
   protected $signature = 'make:migration-builder:salesforce:object:fields
     {--objects=* : Names of Salesforce object}
     {--all}
+    {--output=table : Format of the output: table (default), csf}
   ';
 
   /**
@@ -45,43 +47,83 @@ class SObjectFieldListCommand extends Command
   public function handle()
   {
 
-    $objects = $this->option('objects');
+    $objectNames = $this->option('objects');
     $all = $this->option('all');
-    dd($objects, $all);
+    if (count($objectNames) === 0 && !$all) {
+      $this->error("The --all flag or --objects argument is required.");
+      return Command::INVALID;
+    }
 
     $this->line('Authenticating with Salesforce....');
     Forrest::authenticate();
     $this->info('Authenticated!');
 
-    // https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_sobject_basic_info.htm
-    $objectsDescription = Forrest::sobjects();
-    $objectList = new SObjectList($objectsDescription); // do we need to worry about nextRecordsUrl?
-    $sobjects = $objectList->sobjects;
-    $length = count($sobjects);
+    if ($all) {
+      $objectsDescription = Forrest::sobjects();
+      $objectList = new SObjectList($objectsDescription); // do we need to worry about nextRecordsUrl?
+      $objectNames = collect($objectList->sobjects)->map(fn($o) => $o->name);
+    }
 
+    $objectDescriptions = collect();
+    foreach ($objectNames as $objectName) {
+      $objectDescription = Forrest::sobjects("$objectName/describe");
+      $objectDescriptions[] = new SObject($objectDescription);
+    }
+
+    $length = count($objectDescriptions);
     $this->line("Found {$length} objects");
 
-    if ($length === 0)
+    if ($length === 0) {
       $this->line('No Objects found');
+    }
 
     $headers = [
-      'Label',
-      'Name',
-      'Custom',
+      'Object Label',
+      'Object Name',
+      'Custom Object',
+      'Field Label',
+      'Field Name',
+      'Custom Field',
+      'Field Type',
+      'Field Relationship'
     ];
 
     $rows = [];
 
-    foreach ($sobjects as $sobject) {
-      $rows[] = [
-        'label' => $sobject->label,
-        'name' => $sobject->name,
-        'custom' => $sobject->custom ? 'Yes' : 'No',
-      ];
+    foreach ($objectDescriptions as $sobject) {
+      foreach ($sobject->fields as $field) {
+        $rows[] = [
+          'object_label' => $sobject->label,
+          'object_name' => $sobject->name,
+          'object_custom' => $sobject->custom ? 'Yes' : 'No',
+          'field_label' => $field->label,
+          'field_name' => $field->name,
+          'field_custom' => $field->custom ? 'Yes' : 'No',
+          'field_type' => $field->type,
+          'field_relationship' => $field->referenceTo[0] ?? '',
+        ];
+      }
     }
 
-    $this->table($headers, $rows);
+    $output = $this->option('output');
+    if ($output === 'table') {
+      $this->table($headers, $rows);
+    } else if ($output === 'csv') {
+      $fh = fopen('php://output', 'w');
+      if (!$fh) {
+        $this->error('Could not open output');
+        return Command::FAILURE;
+      }
+      fputcsv($fh, $headers);
+      foreach ($rows as $row) {
+        fputcsv($fh, $row);
+      }
+      fclose($fh);
+    } else {
+      $this->error("Unknown output type: $output");
+      return Command::FAILURE;
+    }   
 
-    return 0;
+    return Command::SUCCESS;
   }
 }
