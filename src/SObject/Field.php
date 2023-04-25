@@ -144,6 +144,15 @@ class Field extends SObjectBase
     'xsd:string', // Character strings.
     'urn:address', // not seen in docs, https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/compound_fields_address.htm
     'urn:location', // not seen in docs
+    'ChangeEventHeader', // not seen in docs
+    'xsd:long', // not seen in docs
+    'StringList', // not seen in docs
+    'xsd:time', // not seen in docs
+    'urn:RecordTypesSupported', // not seen in docs
+    'urn:RelationshipReferenceTo', // not seen in docs
+    'urn:JunctionIdListNames', // not seen in docs
+    'urn:SearchLayoutFieldsDisplayed', // not seen in docs
+    'urn:SearchLayoutButtonsDisplayed', // not seen in docs
   ];
 
   protected bool $sortable;
@@ -172,6 +181,10 @@ class Field extends SObjectBase
     'anytype', // Values can be any of these types: string, picklist, boolean, int, double, percent, ID, date, dateTime, url, or email.
     'location', // Geolocation values, including latitude and longitude, for custom geolocation fields on custom objects
     'address', // not seen in docs, https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/compound_fields_address.htm
+    'complexvalue', // not seen in docs
+    'long', // not seen in docs
+    'time', // not seen in docs
+    'encryptedstring', // not seen in docs
   ];
 
   protected bool $unique;
