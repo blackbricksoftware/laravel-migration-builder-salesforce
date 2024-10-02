@@ -17,22 +17,25 @@ class SObjectMigration extends Migration
   public function addSObject(SObject $sobject, bool $includeForeignKeys = false): SObjectMigration
   {
 
-    if (count($sobject->fields) === 0)
+    if (count($sobject->fields) === 0) {
       return $this;
+    }
 
     foreach ($sobject->fields as $field) {
 
       $translateMethod = $this->findSObjectFieldToColumnTranslation($field);
       $column = $this->$translateMethod($field);
 
-      if ($field->unique)
+      if ($field->unique) {
         $column->setUnique(true);
+      }
 
       $this->table->addColumn($column);
     }
 
-    if ($includeForeignKeys)
+    if ($includeForeignKeys) {
       throw new InvalidArgumentException("Including foreign keys is not supported yet.... :'(");
+    }
 
     return $this;
   }
@@ -47,8 +50,9 @@ class SObjectMigration extends Migration
 
     $translateMethod = 'translate' . Str::studly($field->type);
 
-    if (method_exists($this, $translateMethod))
+    if (method_exists($this, $translateMethod)) {
       return $translateMethod;
+    }
 
     throw new RuntimeException("Unknown type {$field->type} for Field {$field->name}");
   }
@@ -59,8 +63,9 @@ class SObjectMigration extends Migration
     $length = $field->length ?: 255;
 
     // use a text type field if length is greather than 255
-    if ($length>255)
+    if ($length>255) {
       return $this->translateTextarea($field);
+    }
 
     return new Column($field->name, 'string', [
       'length' => $length,
@@ -160,6 +165,11 @@ class SObjectMigration extends Migration
   }
 
   public function translateEmail(Field $field): Column
+  {
+    return $this->translateString($field);
+  }
+
+  public function translateEncryptedstring(Field $field): Column
   {
     return $this->translateString($field);
   }
